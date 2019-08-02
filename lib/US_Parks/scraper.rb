@@ -9,9 +9,12 @@ class USParks::Scraper
             parse_state_name = array_states_list.values_at(*15..70)
 
         array_state_url = doc.css("a").map{|link| link['href']}
-            parse_state_url = array_state_url.values_at(*7..60)
+            list_state_url = array_state_url.values_at(*7..62)
+                parse_state_url = list_state_url.map {|url| "https://www.nps.gov" + url  }
 
         attributes = {name: parse_state_name, state_url: parse_state_url}
+
+
         binding.pry
 
     end
