@@ -14,6 +14,7 @@ class USParks::Scraper
 
         attributes = {name: parse_state_name, state_url: parse_state_url}
 
+        USParks::State.new(attributes)
 
         binding.pry
 
