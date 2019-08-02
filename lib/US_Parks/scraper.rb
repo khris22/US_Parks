@@ -16,7 +16,7 @@ class USParks::Scraper
 
         USParks::State.new(attributes)
 
-        binding.pry
+        # binding.pry
 
     end
 
