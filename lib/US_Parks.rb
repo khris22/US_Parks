@@ -1,6 +1,9 @@
-require "US_Parks/version"
+require 'open-uri'
+require 'nokogiri'
+require 'pry'
 
-module USParks
-  class Error < StandardError; end
-  # Your code goes here...
-end
+require_relative 'US_Parks/version'
+require_relative './US_Parks/cli'
+require_relative './US_Parks/scraper'
+require_relative './US_Parks/state'
+require_relative './US_Parks/park'
