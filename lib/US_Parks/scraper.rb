@@ -1,0 +1,3 @@
+class USParks::Scraper
+
+end

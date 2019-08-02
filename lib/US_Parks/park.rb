@@ -1,0 +1,3 @@
+class USParks::Park
+
+end

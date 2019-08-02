@@ -1,0 +1,3 @@
+class USParks::State
+
+end
