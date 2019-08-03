@@ -3,7 +3,7 @@ class USParks::CLI
         start_greeting
         list_state_names
         get_state_park_list
-        
+        list_park_names
     end
 
     def start_greeting
@@ -27,16 +27,23 @@ class USParks::CLI
 
             if input == "exit" || input == "EXIT"
                 exit_app
-            elsif index <= USParks::State.all.length #.size
-                park = USParks::State.all[index -1]
-                USParks::Scraper.scrape_state_park_list(state)
+            elsif index > 0 && index <= USParks::State.all.length
+                park = USParks::State.all[index - 1]
+                USParks::Scraper.scrape_state_park_list(park)
                 puts "(#{index}) #{park.name}"
             else
                 puts "Invalid input. Please enter a number."
                 get_state_park_list
             end
     end
-        
+    
+    def list_park_names
+        USParks::Park.all.each.with_index(1) do |park, index|
+            puts "(#{index})" + "#{park.park_name}"
+        end
+    end
+
+
     def exit_app
         puts "Goodbye"
     end
