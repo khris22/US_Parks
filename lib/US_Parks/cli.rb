@@ -12,7 +12,8 @@ class USParks::CLI
     def list_state
         USParks::Scraper.scrape_state
         USParks::State.all.each.with_index(1) do |state, index|
-            puts "(#{index}) #{state.name}"
+            puts "(#{index})" + "#{state.name}"
+        # binding.pry
         end 
     end
 end
