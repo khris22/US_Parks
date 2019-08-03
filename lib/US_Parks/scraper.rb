@@ -29,22 +29,23 @@ class USParks::Scraper
         end   
     end
 
-    def self.scrape_state_park_list #(state)
+    def self.scrape_state_park_list # (state)
         # doc = Nokogiri::HTML(open(state.state_url))
         doc = Nokogiri::HTML(open("https://www.nps.gov/state/al/index.htm"))
 
         # binding.pry
-        array_park_list = doc.css("li").children
-
+        array_park_list = doc.css(".col-md-9.col-sm-9.col-xs-12.table-cell.list_left")
+        # doc.css("li")
         array_park_list.each do |park_attr|
             attributes = {
-                park_name: park_attr.css("h3 a").children.first.text,
-                park_link: "https://www.nps.gov" + park_attr.css("h3 a").attribute("href").value + "index.htm",
+                park_name: park_attr.css("h3").children.first.text,
+                park_link: "https://www.nps.gov" + park_attr.css("a").attribute("href").value + "index.htm",
                 park_designation: park_attr.css("h2").children.first.text,
-                park_description: park_attr.css("p").children.first.text.strip
+                park_description: park_attr.css("p").children.first.text.strip    
             }
-            park_attributes = USParks::Park.new(attributes)
             binding.pry
+            park_attributes = USParks::Park.new(attributes)
+            # binding.pry
             # park name array_park_list = doc.css("li h3").children.first.text
             # doc.css("h3 a").children.first.text
         end
