@@ -41,7 +41,7 @@ class USParks::Scraper
                 park_name: park_attr.css("h3 a").children.first.text,
                 park_link: "https://www.nps.gov" + park_attr.css("h3 a").attribute("href").value + "index.htm",
                 park_designation: park_attr.css("h2").children.first.text,
-                park_desccription: park_attr.css("p").children.first.text.strip
+                park_description: park_attr.css("p").children.first.text.strip
             }
             park_attributes = USParks::Park.new(attributes)
             binding.pry
