@@ -40,6 +40,8 @@ class USParks::CLI
     def list_park_names
         USParks::Park.all.each.with_index(1) do |park, index|
             puts "(#{index})" + "#{park.park_name}"
+            puts "#{park.park_designation}"
+            puts "#{park.park_description}"
         end
     end
 
