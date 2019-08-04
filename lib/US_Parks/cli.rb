@@ -32,7 +32,7 @@ class USParks::CLI
                 exit_app
             elsif index > 0 && index <= USParks::State.all.length
                 park = USParks::State.all[index - 1]
-                USParks::Scraper.scrape_state_park_list
+                # USParks::Scraper.scrape_state_park_list
                 puts "You chose:" + "(#{index}) #{park.name}"
             else
                 puts "Invalid input. Please enter a number."
