@@ -1,12 +1,12 @@
 class USParks::Park
 
-    attr_accessor :state, :name, :link, :designation, :description #, :park_info
+    attr_accessor :state, :name, :url, :designation, :description #, :park_info
 
     @@all = []
 
     def initialize(name = nil)
         self.name = name
-        self.link = link
+        self.url = url
         self.designation = designation #if designation (not all parks have designation)
         self.description = description
         

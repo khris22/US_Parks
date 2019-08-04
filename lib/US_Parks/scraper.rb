@@ -49,7 +49,7 @@ class USParks::Scraper
         array_park_list.each do |park_attr|
             park = USParks::Park.new
                 park.name = park_attr.css("h3").children.first.text
-                park.link = "https://www.nps.gov" + park_attr.css("a").attribute("href").value + "index.htm"
+                park.url = "https://www.nps.gov" + park_attr.css("a").attribute("href").value + "index.htm"
                 park.description = park_attr.css("p").children.first.text.strip
                 designation = park_attr.css("h2").children.first
                 park.designation = designation.text if designation
@@ -72,21 +72,19 @@ class USParks::Scraper
         end
     end
 
-    # def self.scrape_park_info(park_info)
-    #     doc = Nokogiri::HTML(open(park_info.park_link))
-    #     # doc = Nokogiri::HTML(open("https://www.nps.gov/hobe/index.htm"))
-    #     park_cont_info = doc.css(".col-xs-12.col-sm-6")
-    #     # park_cont_info = doc.css(".ParkFooter-contact")
-    #     binding.pry
-    #     park_contact_info.each do |info|
-    #         attributes = {
-    #             park_add: info.css(".adr").text.split.join(" "),
-    #             park_phone: info.css(".tel").text.split.join(" ")
-    #         }
+    def self.scrape_park_info(index)
+        park = USParks::Park.all[index]
+        doc = Nokogiri::HTML(open(park.url))
+        park_cont_info = doc.css(".vcard")
+        park_cont_info.each do |info|
+            park_info = USParks::ParkInfo.new
+                park_info.address = info.css(".adr").text.split.join(" ") if info.css(".adr")
+                park_info.phone = info.css(".tel").text.split.join(" ") if info.css(".tel")
+            
     #     # # doc = Nokogiri::HTML(open("https://www.nps.gov/hobe/index.htm"))
     #     # # park_contact_info = doc.css(".ParkFooter-contact p").text.strip
     #     # # binding.pry
     #     park_info_attributes = USParks::ParkInfo.new(attributes)
-    #     end
-    # end
+        end
+    end
 end
