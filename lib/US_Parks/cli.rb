@@ -4,6 +4,9 @@ class USParks::CLI
         list_state_names
         get_state_park_list
         list_park_names
+        # get_park_info
+        # list_park_contact_info
+
     end
 
     def start_greeting
@@ -30,7 +33,7 @@ class USParks::CLI
             elsif index > 0 && index <= USParks::State.all.length
                 park = USParks::State.all[index - 1]
                 USParks::Scraper.scrape_state_park_list(park)
-                puts "(#{index}) #{park.name}"
+                puts "You chose:" + "(#{index}) #{park.name}"
             else
                 puts "Invalid input. Please enter a number."
                 get_state_park_list
@@ -45,6 +48,42 @@ class USParks::CLI
         end
     end
 
+    # def get_park_info
+    #     puts "If you would like to know the park's contact information, please type its number"
+    #     puts "or type list to go back to the list of states"
+    #     puts "or exit"
+
+    #     input = gets.strip
+    #     index = input.to_i
+
+    #         if input == "exit" || "EXIT"
+    #             exit_app
+    #         elsif input == "list" || "LIST"
+    #             back_to_menu
+    #         elsif index > 0 && index <= USParks::Park.all.length
+    #             park = USParks::Park.all[index - 1]
+    #             USParks::Scraper.scrape_park_info(park)
+    #             puts "(#{index})" + "#{park.park_name}"
+    #         else
+    #             puts "Sorry. Please enter a number."
+    #             get_park_info
+    #         end
+    # end
+    
+    # def list_park_contact_info
+    #     USParks::ParkInfo.all.each do |contact_info|
+    #         puts "Park's Contact Information:"
+    #         puts "#{contact_info.park_add}"
+    #         puts "#{contact_info.park_phone}"
+    #     end
+    # end
+
+    def back_to_menu
+        USParks::State.destroy_all
+        USParks::Park.destroy_all
+        # USParks::ParkInfo.destroy_all
+        call
+    end
 
     def exit_app
         puts "Goodbye"

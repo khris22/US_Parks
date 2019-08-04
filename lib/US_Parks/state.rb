@@ -3,7 +3,7 @@ class USParks::State
     attr_accessor :name, :state_url
 
     @@all = []
-
+    
     def initialize(attributes_hash)
         attributes_hash.each { |key, value| self.send("#{key}=", value)}
         # binding.pry
@@ -26,5 +26,5 @@ class USParks::State
     def destroy_all
         self.all.clear
     end
-
+# binding.pry
 end

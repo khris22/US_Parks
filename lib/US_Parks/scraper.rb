@@ -51,4 +51,21 @@ class USParks::Scraper
         end
     end
 
+    # def self.scrape_park_info(park_info)
+    #     doc = Nokogiri::HTML(open(park_info.park_link))
+    #     # doc = Nokogiri::HTML(open("https://www.nps.gov/hobe/index.htm"))
+    #     park_cont_info = doc.css(".col-xs-12.col-sm-6")
+    #     # park_cont_info = doc.css(".ParkFooter-contact")
+    #     binding.pry
+    #     park_contact_info.each do |info|
+    #         attributes = {
+    #             park_add: info.css(".adr").text.split.join(" "),
+    #             park_phone: info.css(".tel").text.split.join(" ")
+    #         }
+    #     # # doc = Nokogiri::HTML(open("https://www.nps.gov/hobe/index.htm"))
+    #     # # park_contact_info = doc.css(".ParkFooter-contact p").text.strip
+    #     # # binding.pry
+    #     park_info_attributes = USParks::ParkInfo.new(attributes)
+    #     end
+    # end
 end
