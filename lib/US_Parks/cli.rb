@@ -23,16 +23,18 @@ class USParks::CLI
 
     def get_state_park_list
         puts "Please type the number of the state you would like to check."
-        puts "Type exit when you want to end"
+        puts "Type list to see the list again or exit when you want to end "
 
         input = gets.strip 
         index = input.to_i
 
             if input == "exit" || input == "EXIT"
                 exit_app
+            # elsif input == "list" || "LIST"
+            #     back_to_menu
             elsif index > 0 && index <= USParks::State.all.length
                 park = USParks::State.all[index - 1]
-                # USParks::Scraper.scrape_state_park_list
+                USParks::Scraper.scrape_state_park_list(index)
                 puts "You chose:" + "(#{index}) #{park.name}"
             else
                 puts "Invalid input. Please enter a number."
