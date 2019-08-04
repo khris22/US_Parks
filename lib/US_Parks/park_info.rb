@@ -1,5 +1,5 @@
 # class USParks::ParkInfo
-#     attr_accessor :park_add, :park_phone
+#     attr_accessor :park, :park_add, :park_phone
     
 #     @@all = []
 

@@ -1,5 +1,9 @@
 class USParks::Scraper
 
+    def initialize(url =nil)
+        @url = url
+    end
+
     def self.scrape_state
         doc = Nokogiri::HTML(open("https://www.nps.gov/index.htm"))
         array_states_list = doc.css("li")[5..60]
@@ -35,9 +39,9 @@ class USParks::Scraper
         end   
     end
 
-    def self.scrape_state_park_list(input_state)
-        url = input_state.url
-        doc = Nokogiri::HTML(open(url))
+    def self.scrape_state_park_list #(input_state)
+        # url = input_state.url
+        doc = Nokogiri::HTML(open(@url))
         # doc = Nokogiri::HTML(open("https://www.nps.gov/state/al/index.htm"))
         array_park_list = doc.css(".col-md-9.col-sm-9.col-xs-12.table-cell.list_left")
         array_park_list.each do |park_attr|
@@ -46,7 +50,8 @@ class USParks::Scraper
                 park.link = "https://www.nps.gov" + park_attr.css("a").attribute("href").value + "index.htm"
                 park.designation = park_attr.css("h2").children.first.text if park_attr.css("h2").children.first.text
                 park.description = park_attr.css("p").children.first.text.strip
-                binding.pry
+                # binding.pry
+        
         # array_park_list.each do |park_attr|
         #     attributes = {
         #         park_name: park_attr.css("h3").children.first.text,
