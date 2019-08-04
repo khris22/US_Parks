@@ -1,15 +1,15 @@
 class USParks::Park
 
-    attr_accessor :state, :park_name, :park_link, :park_designation, :park_description
+    attr_accessor :state, :name, :link, :designation, :description
 
     @@all = []
 
-    def initialize(park)
-        self.park_name = park_name
-        self.park_link = park_link
-        self.park_designation = park_designation
-        self.park_description = park_description
-
+    def initialize(state)
+        self.name = name
+        self.link = link
+        self.designation = designation
+        self.description = description
+        
         # (park_attributes_hash)
         # park_attributes_hash.each { |key, value| self.send("#{key}=", value)}
         self.save 

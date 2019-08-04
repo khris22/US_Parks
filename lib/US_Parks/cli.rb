@@ -32,19 +32,19 @@ class USParks::CLI
                 exit_app
             elsif index > 0 && index <= USParks::State.all.length
                 park = USParks::State.all[index - 1]
-                USParks::Scraper.scrape_state_park_list(park)
-                puts "You chose:" + "(#{index}) #{park.name}"
+                USParks::Scraper.scrape_state_park_list(state)
+                puts "You chose:" + "(#{index}) #{state.name}"
             else
                 puts "Invalid input. Please enter a number."
                 get_state_park_list
             end
     end
     
-    def list_park_names
-        USParks::Park.all.each.with_index(1) do |park, index|
-            puts "(#{index})" + "#{park.park_name}"
-            puts "#{park.park_designation}"
-            puts "#{park.park_description}"
+    def list_park_names(state)
+        USParks::Park.all.each.with_index(1) do |state, index|
+            puts "(#{index})" + "#{state.park_name}"
+            puts "#{state.park_designation}"
+            puts "#{state.park_description}"
         end
     end
 

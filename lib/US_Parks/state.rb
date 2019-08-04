@@ -1,12 +1,12 @@
 class USParks::State
     
-    attr_accessor :name, :state_url, :park
+    attr_accessor :name, :url, :park
 
     @@all = []
     
-    def initialize
+    def initialize(name = nil, url = nil)
         @name = name
-        @state_url = state_url
+        @url = url
         # (attributes_hash)
         # attributes_hash.each { |key, value| self.send("#{key}=", value)}
         # binding.pry
@@ -16,6 +16,9 @@ class USParks::State
         self.save
         
     end
+
+    def url
+
 
     def self.all
         @@all

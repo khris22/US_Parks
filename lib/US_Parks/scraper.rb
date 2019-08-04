@@ -6,15 +6,16 @@ class USParks::Scraper
         array_states_list.each do |state_attr|
             state = USParks::State.new
                 state.name = state_attr.css("a").children.first.text
-                state.state_url = "https://www.nps.gov" + state_attr.css("a").attribute("href").value
+                state.url = "https://www.nps.gov" + state_attr.css("a").attribute("href").value
                 # binding.pry
         # array_states_list = doc.css("li")[5..60]
         # array_states_list.each do |state_attr|
-        #     attributes = {
+        #     input_args = {
         #         name: state_attr.css("a").children.first.text,
         #         state_url: "https://www.nps.gov" + state_attr.css("a").attribute("href").value
         #     }
-        # USParks::State.new(attributes)
+        # USParks::State.new(input_args)
+        # binding.pry
                 # array_states_list = doc.css("li").children.map{ |name| name.text }
                 #     parse_state_name = array_states_list.values_at(*5..58)
 
@@ -34,16 +35,17 @@ class USParks::Scraper
         end   
     end
 
-    def self.scrape_state_park_list #(park_input)
-        #doc = Nokogiri::HTML(open(park_input.state_url))
-        doc = Nokogiri::HTML(open("https://www.nps.gov/state/al/index.htm"))
+    def self.scrape_state_park_list(input_state)
+        url = input_state.url
+        doc = Nokogiri::HTML(open(url))
+        # doc = Nokogiri::HTML(open("https://www.nps.gov/state/al/index.htm"))
         array_park_list = doc.css(".col-md-9.col-sm-9.col-xs-12.table-cell.list_left")
         array_park_list.each do |park_attr|
             park = USParks::Park.new
-                park.park_name = park_attr.css("h3").children.first.text
-                park.park_link = "https://www.nps.gov" + park_attr.css("a").attribute("href").value + "index.htm"
-                park.park_designation = park_attr.css("h2").children.first.text if park_attr.css("h2").children.first.text
-                park.park_description = park_attr.css("p").children.first.text.strip
+                park.name = park_attr.css("h3").children.first.text
+                park.link = "https://www.nps.gov" + park_attr.css("a").attribute("href").value + "index.htm"
+                park.designation = park_attr.css("h2").children.first.text if park_attr.css("h2").children.first.text
+                park.description = park_attr.css("p").children.first.text.strip
                 binding.pry
         # array_park_list.each do |park_attr|
         #     attributes = {
