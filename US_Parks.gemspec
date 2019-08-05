@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["khrispunzalan@gmail.com"]
 
   spec.summary       = %q{This gem scrapes all states and parks from nps.gov/index.htm}
-  # spec.description   = %q{TODO: Write a longer description or delete this line.}
+  spec.description   = %q{This CLI (Command Line Interface) allows you to access information about the different parks in each US State and territory.}
   spec.homepage      = "https://github.com/khris22/US_Parks.git"
   spec.license       = "MIT"
 
