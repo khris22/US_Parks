@@ -6,9 +6,9 @@ class USParks::CLI
         list_state_names
         get_state_park_list
         list_park_names
-        # get_park_info
-        # list_park_contact_info
-        # end_option
+        get_park_info
+        list_park_contact_info
+        end_option
     end
 
     def start_greeting
@@ -33,8 +33,10 @@ class USParks::CLI
     end
 
     def get_state_park_list
+        puts "           ==========================================================================="
         puts "                 Please type the ".colorize(:blue) + "number " + "of the state you would like to check.".colorize(:blue)
         puts "              Type ".colorize(:blue) + "back " + "to see the list of state again or ".colorize(:blue) + "exit " + "when you want to end ".colorize(:blue)
+        puts "           ==========================================================================="
 
         input = gets.strip 
         index = input.to_i
@@ -46,9 +48,9 @@ class USParks::CLI
             elsif index > 0 && index <= USParks::State.all.length
                 park = USParks::State.all[index - 1]
                 USParks::Scraper.scrape_state_park_list(index - 1)
-                puts "              ********" + "   You chose:  ".colorize(:dark_gray) + "(#{index})_ _ _" + "#{park.name}".upcase.colorize(:cyan) + "   ********"
+                puts "                   ********" + "   You chose:  ".colorize(:light_blue) + "(#{index})_ _ _" + "#{park.name}".upcase.colorize(:cyan) + "   ********"
             else
-                puts "              Let's try again. Please enter a number:".colorize(:red)
+                puts " ==> Let's try again. Please enter a number: <==".colorize(:red)
                 get_state_park_list
             end
     end
@@ -64,9 +66,12 @@ class USParks::CLI
     end
 
     def get_park_info
-        puts "If you would like to know the park's contact information, please type its number"
-        puts "or type back to go back again to the list of states"
-        puts "or exit"
+        puts ""
+        puts "           ==========================================================================="
+        puts "                  To know the park's contact information, please type its".colorize(:blue) + " number."
+        puts "                      Type ".colorize(:blue) + "back " + "to see the list of state again or ".colorize(:blue) + "exit " + "to end.".colorize(:blue)
+        puts "           ==========================================================================="
+        puts ""
 
         input = gets.strip
         index = input.to_i
@@ -78,18 +83,20 @@ class USParks::CLI
             elsif index > 0 && index <= USParks::Park.all.length
                 park = USParks::Park.all[index - 1]
                 USParks::Scraper.scrape_park_info(index - 1)
-                puts "(#{index})" + "#{park.name}"
+                puts "          (#{index}) _ _ _ " + "#{park.name}".colorize(:green)
             else
-                puts "Sorry. Please enter a number."
+                puts " ==> Sorry. Let's try again. Please enter a number. <==".colorize(:red)
                 get_park_info
             end
     end
     
     def list_park_contact_info
         USParks::ParkInfo.all.each do |contact_info|
-            puts "Park's Contact Information:"
-            puts "Address: #{contact_info.address}"
-            puts "Phone Number: #{contact_info.phone}"
+            puts ""
+            puts "                  >>>>>>>>>    Park's Contact Information:  <<<<<<<<<".colorize(:magenta)
+            puts "                      Address: " + " #{contact_info.address}".colorize(:light_magenta)
+            puts "                      Phone Number: " + " #{contact_info.phone}".colorize(:light_magenta)
+            puts ""
         end
     end
 
@@ -101,13 +108,31 @@ class USParks::CLI
     end
 
     def end_option
-        puts "Please type state if you want to see the list of States"
-        puts "or back to go back to the list of states"
-        puts "type exit if you want the app to end"
+        puts ""
+        puts "           ==========================================================================="
+        puts "                      Type ".colorize(:blue) + "back " + "to see the list of state again or ".colorize(:blue) + "exit " + "to end.".colorize(:blue)
+        puts "           ==========================================================================="
+        puts ""
+    
+        input = gets.strip
+
+        if input.downcase == "exit"
+            exit_app
+        elsif input.downcase == "back"
+            back_to_menu
+        else
+            puts " ==> Invalid input. Please try again. <==".colorize(:red)
+            end_option
+        end
+
     end
 
     def exit_app
-        puts "Goodbye! Have a great day!"
+        puts ""
+        puts "                      +++++++++++++++++++++++++++++++++++++++++++++++++"
+        puts "                                 Goodbye! Have a great day!".colorize(:light_yellow)
+        puts "                      +++++++++++++++++++++++++++++++++++++++++++++++++"
+        puts ""
     end
 
 end
