@@ -3,9 +3,7 @@ class USParks::ParkInfo
     
     @@all = []
 
-    def initialize #(park_info_hash = nil)
-        #park_info_hash.each { |key, value| self.send("#{key}=", value)}
-        # self.park_contact_info
+    def initialize
         @address = address
         @phone = phone
         self.save 
@@ -16,7 +14,6 @@ class USParks::ParkInfo
     end
 
     def save
-        #@@all << self
         self.class.all << self
         self
     end

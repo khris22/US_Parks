@@ -7,13 +7,8 @@ class USParks::Park
     def initialize(name = nil)
         self.name = name
         self.url = url
-        self.designation = designation #if designation (not all parks have designation)
+        self.designation = designation 
         self.description = description
-        
-        # @park_info = []
-
-        # (park_attributes_hash)
-        # park_attributes_hash.each { |key, value| self.send("#{key}=", value)}
         self.save 
     end
 
@@ -26,7 +21,6 @@ class USParks::Park
     end
 
     def save
-        #@@all << self
         self.class.all << self
         self
     end
