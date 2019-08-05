@@ -6,26 +6,35 @@ class USParks::CLI
         list_state_names
         get_state_park_list
         list_park_names
-        get_park_info
-        list_park_contact_info
-        end_option
+        # get_park_info
+        # list_park_contact_info
+        # end_option
     end
 
     def start_greeting
-        puts "Welcome to the US Parks App!".colorize(:light_green)
+        puts "                               ------------------------------"
+        puts ""
+        puts "                                Welcome to the US Parks App!".colorize(:light_green)
+        puts ""
+        puts "                               ------------------------------"
+        puts ""
+        puts "              In this app you will be able to view the parks in each state in the US.".colorize(:blue)
+        puts "                   Please enter the ".colorize(:blue) + "number".colorize(:white) + " of the state you are interested in.".colorize(:blue)
+        puts "                                      happy exploring!".upcase.colorize(:magenta)
+        puts ""
     end
 
     def list_state_names
         USParks::Scraper.scrape_state
         USParks::State.all.each.with_index(1) do |state, index|
-            puts "(#{index})" + "#{state.name}"
+        puts "                                      (#{index})".colorize(:light_gray) + "_ _ _" + "#{state.name}".colorize(:cyan)
         # binding.pry
         end 
     end
 
     def get_state_park_list
-        puts "Please type the number of the state you would like to check."
-        puts "Type back to see the list again or exit when you want to end "
+        puts "                 Please type the ".colorize(:blue) + "number " + "of the state you would like to check.".colorize(:blue)
+        puts "              Type ".colorize(:blue) + "back " + "to see the list of state again or ".colorize(:blue) + "exit " + "when you want to end ".colorize(:blue)
 
         input = gets.strip 
         index = input.to_i
@@ -37,18 +46,20 @@ class USParks::CLI
             elsif index > 0 && index <= USParks::State.all.length
                 park = USParks::State.all[index - 1]
                 USParks::Scraper.scrape_state_park_list(index - 1)
-                puts "***** You chose:" + "(#{index})  #{park.name} *****".upcase
+                puts "              ********" + "   You chose:  ".colorize(:dark_gray) + "(#{index})_ _ _" + "#{park.name}".upcase.colorize(:cyan) + "   ********"
             else
-                puts "Invalid input. Please enter a number."
+                puts "              Let's try again. Please enter a number:".colorize(:red)
                 get_state_park_list
             end
     end
     
     def list_park_names
         USParks::Park.all.each.with_index(1) do |park, index|
-            puts "(#{index})" + "#{park.name}"
-            puts "#{park.designation}"
-            puts "#{park.description}"
+            puts ""
+            puts "            (#{index}) _ _ _ " + "#{park.name}".colorize(:yellow)
+            puts "                    #{park.designation}".colorize(:light_green)
+            puts ""
+            puts "  #{park.description}".colorize(:white)
         end
     end
 
@@ -79,7 +90,6 @@ class USParks::CLI
             puts "Park's Contact Information:"
             puts "Address: #{contact_info.address}"
             puts "Phone Number: #{contact_info.phone}"
-            puts "Website: #{contact_info.url}"
         end
     end
 
@@ -92,11 +102,12 @@ class USParks::CLI
 
     def end_option
         puts "Please type state if you want to see the list of States"
-        puts "or back to see the previous list type exit if you the program to end"
+        puts "or back to go back to the list of states"
+        puts "type exit if you want the app to end"
     end
 
     def exit_app
-        puts "Goodbye"
+        puts "Goodbye! Have a great day!"
     end
 
 end
