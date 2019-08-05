@@ -1,6 +1,6 @@
 class USParks::Park
 
-    attr_accessor :state, :name, :url, :designation, :description #, :park_info
+    attr_accessor :state, :name, :url, :designation, :description, :park_info
 
     @@all = []
 

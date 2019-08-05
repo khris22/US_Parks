@@ -8,11 +8,11 @@ class USParks::CLI
         list_park_names
         get_park_info
         list_park_contact_info
-
+        end_option
     end
 
     def start_greeting
-        puts "Welcome to the US Parks App!"
+        puts "Welcome to the US Parks App!".colorize(:light_green)
     end
 
     def list_state_names
@@ -79,6 +79,7 @@ class USParks::CLI
             puts "Park's Contact Information:"
             puts "Address: #{contact_info.address}"
             puts "Phone Number: #{contact_info.phone}"
+            puts "Website: #{contact_info.url}"
         end
     end
 
@@ -87,6 +88,11 @@ class USParks::CLI
         USParks::Park.destroy_all
         USParks::ParkInfo.destroy_all
         call
+    end
+
+    def end_option
+        puts "Please type state if you want to see the list of States"
+        puts "or back to see the previous list type exit if you the program to end"
     end
 
     def exit_app
