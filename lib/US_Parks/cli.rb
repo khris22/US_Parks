@@ -20,6 +20,7 @@ class USParks::CLI
         puts ""
         puts "              In this app you will be able to view the parks in each state in the US.".colorize(:blue)
         puts "                   Please enter the ".colorize(:blue) + "number".colorize(:white) + " of the state you are interested in.".colorize(:blue)
+        puts ""
         puts "                                      happy exploring!".upcase.colorize(:magenta)
         puts ""
     end
@@ -33,10 +34,12 @@ class USParks::CLI
     end
 
     def get_state_park_list
+        puts ""
         puts "           ==========================================================================="
         puts "                 Please type the ".colorize(:blue) + "number " + "of the state you would like to check.".colorize(:blue)
         puts "              Type ".colorize(:blue) + "back " + "to see the list of state again or ".colorize(:blue) + "exit " + "when you want to end ".colorize(:blue)
         puts "           ==========================================================================="
+        puts ""
 
         input = gets.strip 
         index = input.to_i
