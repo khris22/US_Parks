@@ -2,6 +2,8 @@
 require 'open-uri'
 require 'nokogiri'
 require 'pry'
+require 'colorize'
+
 
 
 require_relative './US_Parks/version'

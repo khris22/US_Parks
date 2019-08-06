@@ -1,5 +1,3 @@
-require 'colorize'
-
 class USParks::CLI 
     def call
         start_greeting
@@ -8,13 +6,13 @@ class USParks::CLI
         list_park_names
         get_park_info
         list_park_contact_info
-        end_option
+        # end_option
     end
 
     def start_greeting
         puts "                               ------------------------------"
         puts ""
-        puts "                                Welcome to the US Parks App!".colorize(:light_green)
+        puts "                              \u{1F333} Welcome to the US Parks App!\u{1F333}".colorize(:light_green)
         puts ""
         puts "                               ------------------------------"
         puts ""
@@ -37,7 +35,7 @@ class USParks::CLI
         puts ""
         puts "           ==========================================================================="
         puts "                 Please type the ".colorize(:blue) + "number " + "of the state you would like to check.".colorize(:blue)
-        puts "              Type ".colorize(:blue) + "back " + "to see the list of state again or ".colorize(:blue) + "exit " + "when you want to end ".colorize(:blue)
+        puts "              Type ".colorize(:blue) + "back " + "to see the list of state again or ".colorize(:blue) + "exit " + "when you want to end. ".colorize(:blue)
         puts "           ==========================================================================="
         puts ""
 
@@ -136,6 +134,7 @@ class USParks::CLI
         puts "                                 Goodbye! Have a great day!".colorize(:light_yellow)
         puts "                      +++++++++++++++++++++++++++++++++++++++++++++++++"
         puts ""
+        Kernel.exit
     end
 
 end
