@@ -6,7 +6,7 @@ class USParks::CLI
         list_park_names
         get_park_info
         list_park_contact_info
-        # end_option
+        end_option
     end
 
     def start_greeting
@@ -26,7 +26,7 @@ class USParks::CLI
     def list_state_names
         USParks::Scraper.scrape_state
         USParks::State.all.each.with_index(1) do |state, index|
-        puts "                                      (#{index})".colorize(:light_gray) + "_ _ _" + "#{state.name}".colorize(:cyan)
+        puts "                                  (#{index})".colorize(:light_gray) + "_ _ _" + "#{state.name}".colorize(:cyan)
         # binding.pry
         end 
     end

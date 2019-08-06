@@ -6,7 +6,13 @@ class USParks::ParkInfo
     def initialize(address = nil, phone = nil )
         self.address = address
         self.phone = phone
+        self.park
         self.save 
+    end
+
+    def park=(park)
+        @park = park
+        park.add_park_info(self)
     end
 
     def self.all

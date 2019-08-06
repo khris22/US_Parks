@@ -19,7 +19,7 @@ class USParks::State
         @@all
     end
 
-    def add_park(park)
+    def add_park(park) #this would push in parks array
         park.state = self unless park.state
         parks << park unless parks.unclude?(park)
     end
