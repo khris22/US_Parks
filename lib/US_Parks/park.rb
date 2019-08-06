@@ -19,9 +19,9 @@ class USParks::Park
         state.add_park(self)
     end
 
-    def state
-        self.state == nil ? nil : self.state.name
-    end
+    # def state
+    #     self.state == nil ? nil : self.state.name
+    # end
 
     def self.all
         @@all
