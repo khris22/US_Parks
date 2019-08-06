@@ -10,24 +10,25 @@ class USParks::CLI
     end
 
     def start_greeting
-        puts "                               ------------------------------"
+        puts "                            ------------------------------"
         puts ""
-        puts "                              \u{1F333} Welcome to the US Parks App!\u{1F333}".colorize(:light_green)
+        puts "                           \u{1F333} Welcome to the US Parks App!\u{1F333}".colorize(:light_green)
         puts ""
-        puts "                               ------------------------------"
+        puts "                            ------------------------------"
         puts ""
-        puts "              In this app you will be able to view the parks in each state in the US.".colorize(:blue)
-        puts "                   Please enter the ".colorize(:blue) + "number".colorize(:white) + " of the state you are interested in.".colorize(:blue)
+        puts "             In this app you will be able to view the parks in each state in the US.".colorize(:blue)
+        puts "                  Please enter the ".colorize(:blue) + "number".colorize(:white) + " of the state you are interested in.".colorize(:blue)
         puts ""
-        puts "                                      happy exploring!".upcase.colorize(:magenta)
+        puts "                                  happy exploring!".upcase.colorize(:magenta)
         puts ""
+        sleep 2
     end
 
     def list_state_names
         USParks::Scraper.scrape_state
         USParks::State.all.each.with_index(1) do |state, index|
         puts "                                  (#{index})".colorize(:light_gray) + "_ _ _" + "#{state.name}".colorize(:cyan)
-        # binding.pry
+        sleep 0.15
         end 
     end
 
@@ -63,6 +64,7 @@ class USParks::CLI
             puts "                    #{park.designation}".colorize(:light_green)
             puts ""
             puts "  #{park.description}".colorize(:white)
+            sleep 0.5
         end
     end
 
