@@ -4,26 +4,27 @@ class USParks::State
 
     @@all = []
     
-    def initialize(name = nil, url = nil)
+    def initialize(name = nil)
         @name = name
         @url = url
         self.save
-        
-    end
+        @parks = [] # do i need this because I assigned park = self
+    end   
 
-    def url
-        @url ||= USParks::Scraper.scrape_state_park_list
-    end
+    # def parks #to call the method .park that will return an array of parks
+    #     @parks
+    # end
 
     def self.all
         @@all
     end
 
     def add_park(park)
-        park.state = self
+        park.state = self unless park.state
+        parks << park unless parks.unclude?(park)
     end
 
-    def parks
+    def all_parks # this would assign it to self/state
         Park.all.select { |park| park.state == self}
     end
 

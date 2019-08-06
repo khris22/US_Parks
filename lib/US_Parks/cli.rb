@@ -96,9 +96,9 @@ class USParks::CLI
     def list_park_contact_info
         USParks::ParkInfo.all.each do |contact_info|
             puts ""
-            puts "                  >>>>>>>>>    Park's Contact Information:  <<<<<<<<<".colorize(:magenta)
-            puts "                      Address: " + " #{contact_info.address}".colorize(:light_magenta)
-            puts "                      Phone Number: " + " #{contact_info.phone}".colorize(:light_magenta)
+            puts "              >>>>>>>>> Park's Contact Information: <<<<<<<<<".colorize(:cyan)
+            puts "                #{contact_info.address}".colorize(:light_magenta)
+            puts "                #{contact_info.phone}".colorize(:light_magenta)
             puts ""
         end
     end

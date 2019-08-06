@@ -4,15 +4,22 @@ class USParks::Park
 
     @@all = []
 
-    def initialize(name = nil)
-        self.name = name
-        self.url = url
-        self.designation = designation 
-        self.description = description
+    def initialize(name = nil, state = nil)
+        @name = name
+        @url = url
+        @designation = designation if designation
+        @description = description
+        @park_info = []
+        self.state
         self.save 
     end
 
-    def state_name
+    def state=(state)
+        @state = state
+        state.add_park(self)
+    end
+
+    def state
         self.state == nil ? nil : self.state.name
     end
 

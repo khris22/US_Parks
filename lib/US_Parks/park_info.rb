@@ -3,9 +3,9 @@ class USParks::ParkInfo
     
     @@all = []
 
-    def initialize
-        @address = address
-        @phone = phone
+    def initialize(address = nil, phone = nil )
+        self.address = address
+        self.phone = phone
         self.save 
     end
 

@@ -29,7 +29,8 @@ class USParks::Scraper
                 park.description = park_attr.css("p").children.first.text.strip
                 designation = park_attr.css("h2").children.first
                 park.designation = designation.text if designation
-
+            # state << park
+            # 
         end
     end
 
