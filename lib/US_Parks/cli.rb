@@ -1,6 +1,7 @@
 class USParks::CLI 
     def call
         start_greeting
+        USParks::Scraper.scrape_state
         list_state_names
         get_state_park_list
         list_park_names
@@ -21,14 +22,15 @@ class USParks::CLI
         puts ""
         puts "                                  happy exploring!".upcase.colorize(:magenta)
         puts ""
-        sleep 2
+        sleep 2 #so the user can have a chance to read the directions first
     end
 
     def list_state_names
-        USParks::Scraper.scrape_state
+        # USParks::Scraper.scrape_state
         USParks::State.all.each.with_index(1) do |state, index|
         puts "                                  (#{index})".colorize(:light_gray) + "_ _ _" + "#{state.name}".colorize(:cyan)
-        sleep 0.15
+        # binding.pry
+        # sleep 0.15 - slows down the list
         end 
     end
 
@@ -64,7 +66,8 @@ class USParks::CLI
             puts "                    #{park.designation}".colorize(:light_green)
             puts ""
             puts "  #{park.description}".colorize(:white)
-            sleep 0.5
+        # binding.pry
+            # sleep 0.20
         end
     end
 
@@ -85,7 +88,8 @@ class USParks::CLI
                 back_to_menu
             elsif index > 0 && index <= USParks::Park.all.length
                 park = USParks::Park.all[index - 1]
-                USParks::Scraper.scrape_park_info(index - 1)
+                #park = USParks::State.parks[index - 1]
+                USParks::Scraper.scrape_park_info(index - 1)             
                 puts "          (#{index}) _ _ _ " + "#{park.name}".colorize(:green)
             else
                 puts " ==> Sorry. Let's try again. Please enter a number. <==".colorize(:red)
@@ -104,9 +108,12 @@ class USParks::CLI
     end
 
     def back_to_menu
-        USParks::State.destroy_all
-        USParks::Park.destroy_all
-        USParks::ParkInfo.destroy_all
+        list_state_names
+        get_state_park_list
+
+        # USParks::State.destroy_all
+        # USParks::Park.destroy_all
+        # USParks::ParkInfo.destroy_all
         call
     end
 
@@ -136,7 +143,10 @@ class USParks::CLI
         puts "                                 Goodbye! Have a great day!".colorize(:light_yellow)
         puts "                      +++++++++++++++++++++++++++++++++++++++++++++++++"
         puts ""
-        Kernel.exit
+        # break
+        Kernel.exit! 
+            # exit a process before executing all of the code.
+            # This method can be used to exit a process immediately, skipping any exit handlers on the way.
     end
 
 end

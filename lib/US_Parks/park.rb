@@ -24,9 +24,12 @@ class USParks::Park
         park_info_a << park_info unless park_info_a.include?(park_info)
     end
 
-    def all_park_info # this would assign it to self/state
-        ParkInfo.all.select { |park_info| park_info.park == self}
-    end
+    def park_info_a #to call the method .park that will return an array of parks
+        @park_info_a
+     end
+    # def all_park_info # this would assign it to self/state
+    #     ParkInfo.all.select { |park_info| park_info.park == self}
+    # end
 
     # def state
     #     self.state == nil ? nil : self.state.name

@@ -18,6 +18,11 @@ needed to change the hash so all the elements/details from the site will be obje
         # self.class.all.send(url) 
         # State.all.select { |link| link.url}
 
+    # def all_parks # this would assign it to self/state
+    #     Park.all.select { |park| park.state == self}
+    # end
+
+
 PARK NOTES
 #if designation (not all parks have designation)
     #not sure if I have to put this?? since not all parks have designation

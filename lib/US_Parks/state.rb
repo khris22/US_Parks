@@ -8,12 +8,12 @@ class USParks::State
         @name = name
         @url = url
         self.save
-        @parks = [] # do i need this because I assigned park = self
+        @parks = []
     end   
 
-    # def parks #to call the method .park that will return an array of parks
-    #     @parks
-    # end
+    def parks #to call the method .park that will return an array of parks
+       @parks
+    end
 
     def self.all
         @@all
@@ -24,10 +24,6 @@ class USParks::State
         parks << park unless parks.unclude?(park)
     end
 
-    def all_parks # this would assign it to self/state
-        Park.all.select { |park| park.state == self}
-    end
-
     def save
         self.class.all << self
         self
@@ -36,5 +32,6 @@ class USParks::State
     def self.destroy_all
         self.all.clear
     end
-# binding.pry
+
 end
+

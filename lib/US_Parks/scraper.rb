@@ -1,9 +1,5 @@
 class USParks::Scraper
 
-    def initialize(url =nil)
-        @url = url
-    end
-
     def self.scrape_state
         doc = Nokogiri::HTML(open("https://www.nps.gov/index.htm"))
         
@@ -30,7 +26,8 @@ class USParks::Scraper
                 designation = park_attr.css("h2").children.first
                 park.designation = designation.text if designation
             # state << park
-            # 
+            # binding.pry
+    
         end
     end
 
@@ -43,6 +40,7 @@ class USParks::Scraper
             park_info = USParks::ParkInfo.new
                 park_info.address = info.css(".adr").text.split.join(" ") if info.css(".adr")
                 park_info.phone = info.css(".tel").text.split.join(" ") if info.css(".tel")
+       
         end
     end
 
