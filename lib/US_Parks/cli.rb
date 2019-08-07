@@ -108,12 +108,11 @@ class USParks::CLI
     end
 
     def back_to_menu
-        list_state_names
-        get_state_park_list
-
-        # USParks::State.destroy_all
-        # USParks::Park.destroy_all
-        # USParks::ParkInfo.destroy_all
+        # list_state_names
+        # get_state_park_list
+        USParks::State.destroy_all
+        USParks::Park.destroy_all
+        USParks::ParkInfo.destroy_all
         call
     end
 
