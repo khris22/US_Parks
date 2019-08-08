@@ -1,14 +1,15 @@
 class USParks::Scraper
 
     def self.scrape_state
-        doc = Nokogiri::HTML(open("https://www.nps.gov/index.htm"))
-        
-        array_states_list = doc.css("li")[5..60]
-        array_states_list.each do |state_attr|
-            state = USParks::State.new
-                state.name = state_attr.css("a").children.first.text
-                state.url = "https://www.nps.gov" + state_attr.css("a").attribute("href").value
-                # binding.pry
+        if USParks::State.all.empty?
+            doc = Nokogiri::HTML(open("https://www.nps.gov/index.htm"))
+            array_states_list = doc.css("li")[5..60]
+            array_states_list.each do |state_attr|
+                state = USParks::State.new
+                    state.name = state_attr.css("a").children.first.text
+                    state.url = "https://www.nps.gov" + state_attr.css("a").attribute("href").value
+                    # binding.pry
+            end
         end   
     end
 

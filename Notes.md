@@ -3,6 +3,9 @@ REMINDER: @@all = self.class.all #make it more dynamic
 # .send() = sends a message to an object instance and its ancestors in class hierarchy 
     # until some method reacts (because its name matches the first argument)
 
+#Kernel.exit! =>
+"https://www.sitepoint.com/exit-exit-abort-raise-get-me-outta-here/"
+
 STATE NOTES
 needed to change the hash so all the elements/details from the site will be objects 
 

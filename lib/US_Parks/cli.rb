@@ -22,7 +22,7 @@ class USParks::CLI
         puts ""
         puts "                                  happy exploring!".upcase.colorize(:magenta)
         puts ""
-        sleep 2 #so the user can have a chance to read the directions first
+        sleep 1 #so the user can have a chance to read the directions first
     end
 
     def list_state_names
@@ -108,9 +108,9 @@ class USParks::CLI
     end
 
     def back_to_menu
-        # list_state_names
-        # get_state_park_list
-        USParks::State.destroy_all
+        list_state_names
+        get_state_park_list
+        # USParks::State.destroy_all
         USParks::Park.destroy_all
         USParks::ParkInfo.destroy_all
         call
