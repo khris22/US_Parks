@@ -1,7 +1,8 @@
 class USParks::CLI 
     def call
-        start_greeting
+        # start_greeting
         USParks::Scraper.scrape_state
+        start_greeting
         list_state_names
         get_state_park_list
         list_park_names
@@ -108,14 +109,15 @@ class USParks::CLI
     end
 
     def back_to_menu
-        # list_state_names
-        # get_state_park_list
-        # list_park_names
-        # end_option
-        # USParks::State.destroy_all
         USParks::Park.destroy_all
+        list_state_names
+        get_state_park_list
+        list_park_names
+        end_option
+        # USParks::State.destroy_all
+        
         # USParks::ParkInfo.destroy_all
-        call
+        # call
     end
 
     def end_option
