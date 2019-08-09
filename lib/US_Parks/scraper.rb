@@ -8,7 +8,9 @@ class USParks::Scraper
                 state = USParks::State.new
                     state.name = state_attr.css("a").children.first.text
                     state.url = "https://www.nps.gov" + state_attr.css("a").attribute("href").value
+                    # scrape_state_park_list(test)
                     # binding.pry
+
             end
         end   
     end
@@ -21,16 +23,19 @@ class USParks::Scraper
         doc = Nokogiri::HTML(open(state.url))
        
         array_park_list = doc.css(".col-md-9.col-sm-9.col-xs-12.table-cell.list_left")
-        # if USParks::Parks.all.empty?
+        # if USParks::Park.all.empty?
         array_park_list.each do |park_attr|
             park = USParks::Park.new(park)
+        
                 park.name = park_attr.css("h3").children.first.text
                 park.url = "https://www.nps.gov" + park_attr.css("a").attribute("href").value + "index.htm"
                 park.description = park_attr.css("p").children.first.text.strip
                 designation = park_attr.css("h2").children.first
                 park.designation = designation.text if designation
-                # arg.parks << park
-                # park.state = arg
+            state.parks << park
+            park.state = state 
+                # USParks::State.parks << park
+                #  park.state = USParks::State.all[index]
             # binding.pry
         # end
         end

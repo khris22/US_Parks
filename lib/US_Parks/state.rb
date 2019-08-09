@@ -1,6 +1,6 @@
 class USParks::State
     
-    attr_accessor :name, :url, :park
+    attr_accessor :name, :url, :park, :parks
 
     @@all = []
     
@@ -11,10 +11,10 @@ class USParks::State
         @parks = []
     end   
 
-    def parks #to call the method .park that will return an array of parks
-        parks << USParks::Park.new
-        #    @parks
-    end
+    # def parks #to call the method .park that will return an array of parks
+    #     parks << USParks::Park.new
+    #     @parks
+    # end
 
     def self.all
         @@all

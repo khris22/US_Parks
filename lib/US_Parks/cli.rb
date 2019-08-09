@@ -54,14 +54,16 @@ class USParks::CLI
                 park = USParks::State.all[index - 1]
                 puts "                   ********" + "   You chose:  ".colorize(:light_blue) + "(#{index})_ _ _" + "#{park.name}".upcase.colorize(:cyan) + "   ********"
                 USParks::Scraper.scrape_state_park_list(index - 1)
+                list_park_names(index - 1)
             else
                 puts " ==> Let's try again. Please enter a number: <==".colorize(:red)
                 get_state_park_list
             end
     end
     
-    def list_park_names
-        USParks::Park.all.each.with_index(1) do |park, index|
+    def list_park_names(index)
+        
+        USParks::State.all[index].parks.each.with_index(1) do |park, index|
             puts ""
             puts "            (#{index}) _ _ _ " + "#{park.name}".colorize(:yellow)
             puts "                    #{park.designation}".colorize(:light_green)
@@ -72,44 +74,44 @@ class USParks::CLI
         end
     end
 
-    def get_park_info
-        puts ""
-        puts "           ==========================================================================="
-        puts "                  To know the park's contact information, please type its".colorize(:blue) + " number."
-        puts "                      Type ".colorize(:blue) + "back " + "to see the list of state again or ".colorize(:blue) + "exit " + "to end.".colorize(:blue)
-        puts "           ==========================================================================="
-        puts ""
+    # def get_park_info
+    #     puts ""
+    #     puts "           ==========================================================================="
+    #     puts "                  To know the park's contact information, please type its".colorize(:blue) + " number."
+    #     puts "                      Type ".colorize(:blue) + "back " + "to see the list of state again or ".colorize(:blue) + "exit " + "to end.".colorize(:blue)
+    #     puts "           ==========================================================================="
+    #     puts ""
 
-        input = gets.strip
-        index = input.to_i
+    #     input = gets.strip
+    #     index = input.to_i
 
-            if input.downcase == "exit"
-                exit_app
-            elsif input.downcase == "back"
-                back_to_menu
-            elsif index > 0 && index <= USParks::Park.all.length
-                park = USParks::Park.all[index - 1]
-                #park = USParks::State.parks[index - 1]
-                USParks::Scraper.scrape_park_info(index - 1)             
-                puts "          (#{index}) _ _ _ " + "#{park.name}".colorize(:green)
-            else
-                puts " ==> Sorry. Let's try again. Please enter a number. <==".colorize(:red)
-                get_park_info
-            end
-    end
+    #         if input.downcase == "exit"
+    #             exit_app
+    #         elsif input.downcase == "back"
+    #             back_to_menu
+    #         elsif index > 0 && index <= USParks::Park.all.length
+    #             park = USParks::Park.all[index - 1]
+    #             #park = USParks::State.parks[index - 1]
+    #             USParks::Scraper.scrape_park_info(index - 1)             
+    #             puts "          (#{index}) _ _ _ " + "#{park.name}".colorize(:green)
+    #         else
+    #             puts " ==> Sorry. Let's try again. Please enter a number. <==".colorize(:red)
+    #             get_park_info
+    #         end
+    # end
     
-    def list_park_contact_info
-        USParks::ParkInfo.all.each do |contact_info|
-            puts ""
-            puts "              >>>>>>>>> Park's Contact Information: <<<<<<<<<".colorize(:cyan)
-            puts "                #{contact_info.address}".colorize(:light_magenta)
-            puts "                #{contact_info.phone}".colorize(:light_magenta)
-            puts ""
-        end
-    end
+    # def list_park_contact_info
+    #     USParks::ParkInfo.all.each do |contact_info|
+    #         puts ""
+    #         puts "              >>>>>>>>> Park's Contact Information: <<<<<<<<<".colorize(:cyan)
+    #         puts "                #{contact_info.address}".colorize(:light_magenta)
+    #         puts "                #{contact_info.phone}".colorize(:light_magenta)
+    #         puts ""
+    #     end
+    # end
 
     def back_to_menu
-        USParks::Park.destroy_all
+        # USParks::Park.destroy_all
         list_state_names
         get_state_park_list
         list_park_names
