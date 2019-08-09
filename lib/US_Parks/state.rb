@@ -4,7 +4,7 @@ class USParks::State
 
     @@all = []
     
-    def initialize(name = nil)
+    def initialize
         @name = name
         @url = url
         self.save
@@ -12,7 +12,8 @@ class USParks::State
     end   
 
     def parks #to call the method .park that will return an array of parks
-       @parks
+        parks << USParks::Park.new
+        #    @parks
     end
 
     def self.all

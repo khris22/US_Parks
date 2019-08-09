@@ -5,8 +5,8 @@ class USParks::CLI
         list_state_names
         get_state_park_list
         list_park_names
-        get_park_info
-        list_park_contact_info
+        # get_park_info
+        # list_park_contact_info
         end_option
     end
 
@@ -51,8 +51,8 @@ class USParks::CLI
                 back_to_menu
             elsif index > 0 && index <= USParks::State.all.length
                 park = USParks::State.all[index - 1]
-                USParks::Scraper.scrape_state_park_list(index - 1)
                 puts "                   ********" + "   You chose:  ".colorize(:light_blue) + "(#{index})_ _ _" + "#{park.name}".upcase.colorize(:cyan) + "   ********"
+                USParks::Scraper.scrape_state_park_list(index - 1)
             else
                 puts " ==> Let's try again. Please enter a number: <==".colorize(:red)
                 get_state_park_list
@@ -108,11 +108,13 @@ class USParks::CLI
     end
 
     def back_to_menu
-        list_state_names
-        get_state_park_list
+        # list_state_names
+        # get_state_park_list
+        # list_park_names
+        # end_option
         # USParks::State.destroy_all
         USParks::Park.destroy_all
-        USParks::ParkInfo.destroy_all
+        # USParks::ParkInfo.destroy_all
         call
     end
 
@@ -143,7 +145,8 @@ class USParks::CLI
         puts "                      +++++++++++++++++++++++++++++++++++++++++++++++++"
         puts ""
         # break
-        Kernel.exit! 
+        exit
+            # Kernel.exit!
             # exit a process before executing all of the code.
             # This method can be used to exit a process immediately, skipping any exit handlers on the way.
     end
