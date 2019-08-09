@@ -5,7 +5,8 @@ class USParks::CLI
         start_greeting
         list_state_names
         get_state_park_list
-        list_park_names
+        # binding.pry
+        # list_park_names
         # get_park_info
         # list_park_contact_info
         end_option
@@ -54,25 +55,33 @@ class USParks::CLI
                 park = USParks::State.all[index - 1]
                 puts "                   ********" + "   You chose:  ".colorize(:light_blue) + "(#{index})_ _ _" + "#{park.name}".upcase.colorize(:cyan) + "   ********"
                 USParks::Scraper.scrape_state_park_list(index - 1)
-                list_park_names(index - 1)
+                # list_park_names(index - 1)
+                USParks::State.all[index - 1].parks.each.with_index(1) do |park, index|
+                    puts ""
+                    puts "            (#{index}) _ _ _ " + "#{park.name}".colorize(:yellow)
+                    puts "                    #{park.designation}".colorize(:light_green)
+                    puts ""
+                    puts "  #{park.description}".colorize(:white)
+                end
             else
                 puts " ==> Let's try again. Please enter a number: <==".colorize(:red)
                 get_state_park_list
+            
             end
     end
     
-    def list_park_names(index)
+    # def list_park_names(index)
         
-        USParks::State.all[index].parks.each.with_index(1) do |park, index|
-            puts ""
-            puts "            (#{index}) _ _ _ " + "#{park.name}".colorize(:yellow)
-            puts "                    #{park.designation}".colorize(:light_green)
-            puts ""
-            puts "  #{park.description}".colorize(:white)
-        # binding.pry
-            # sleep 0.20
-        end
-    end
+    #     USParks::State.all[index].parks.each.with_index(1) do |park, index|
+    #         puts ""
+    #         puts "            (#{index}) _ _ _ " + "#{park.name}".colorize(:yellow)
+    #         puts "                    #{park.designation}".colorize(:light_green)
+    #         puts ""
+    #         puts "  #{park.description}".colorize(:white)
+    #     # binding.pry
+    #         # sleep 0.20
+    #     end
+    # end
 
     # def get_park_info
     #     puts ""
@@ -114,7 +123,7 @@ class USParks::CLI
         # USParks::Park.destroy_all
         list_state_names
         get_state_park_list
-        list_park_names
+        # list_park_names
         end_option
         # USParks::State.destroy_all
         
