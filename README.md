@@ -8,18 +8,18 @@ This gem allows you to access information about the different parks in each US S
 
 This gem has not been published yet. Please clone this repo by typing this command in your terminal:
 
-$ git clone https://github.com/khris22/US_Parks.git
+`$ git clone https://github.com/khris22/US_Parks.git`
 
 
 ## Usage
 
 Go into this project's directory by typing:
 
-$ cd US_Parks
+`$ cd US_Parks`
 
 Type the line below and follow the on screen prompts. 
 
-$ ./bin/US_Parks
+`$ ./bin/US_Parks`
 
 ## Development
 
