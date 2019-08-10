@@ -8,6 +8,15 @@ REMINDER: @@all = self.class.all #make it more dynamic
 
 STATE NOTES
 needed to change the hash so all the elements/details from the site will be objects 
+ # def add_park(park) #this would push in parks array
+    #     park.state = self unless park.state
+    #     parks << park unless parks.unclude?(park)
+    # end
+
+# def parks #to call the method .park that will return an array of parks
+    #     parks << USParks::Park.new
+    #     @parks
+    # end
 
 # (attributes_hash)
     # attributes_hash.each { |key, value| self.send("#{key}=", value)}
@@ -27,9 +36,33 @@ needed to change the hash so all the elements/details from the site will be obje
 
 
 PARK NOTES
+        # @park << self
+        # @park_info_a = []
+        # self.state
+
 #if designation (not all parks have designation)
     #not sure if I have to put this?? since not all parks have designation
 
+    # def self.state=(state)
+    #     @state = state
+    #     state.add_park(self)
+    # end
+
+    # def add_park_info(park_info)
+    #     park.park_info = self unless park.park_info
+    #     park_info_a << park_info unless park_info_a.include?(park_info)
+    # end
+
+    # def park_info_a #to call the method .park that will return an array of parks
+    #     @park_info_a
+    #  end
+    # def all_park_info # this would assign it to self/state
+    #     ParkInfo.all.select { |park_info| park_info.park == self}
+    # end
+
+    # def state
+    #     self.state == nil ? nil : self.state.name
+    # end
 
 PARK NOTES
 #@park_info = [] # used to store park's contact info
@@ -46,6 +79,20 @@ PARK_INFO NOTES
 
 
 SCRAPER
+#def self.scrape_park_info(index)
+    #     park = USParks::Park.all[index]
+    #     doc = Nokogiri::HTML(open(park.url))
+        
+    #     park_cont_info = doc.css(".vcard")
+    #     park_cont_info.each do |info|
+    #         park_info = USParks::ParkInfo.new
+    #             park_info.address = info.css(".adr").text.split.join(" ") if info.css(".adr")
+    #             park_info.phone = info.css(".tel").text.split.join(" ") if info.css(".tel")
+       
+    #     end
+    # end
+
+
 
 #def self.scrape_state
         # array_states_list = doc.css("li")[5..60]

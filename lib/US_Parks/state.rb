@@ -7,27 +7,17 @@ class USParks::State
     def initialize
         @name = name
         @url = url
-        self.save
         @parks = []
+        self.save
     end   
-
-    # def parks #to call the method .park that will return an array of parks
-    #     parks << USParks::Park.new
-    #     @parks
-    # end
-
-    def self.all
-        @@all
-    end
-
-    def add_park(park) #this would push in parks array
-        park.state = self unless park.state
-        parks << park unless parks.unclude?(park)
-    end
 
     def save
         self.class.all << self
         self
+    end
+
+    def self.all
+        @@all
     end
 
     def self.destroy_all
