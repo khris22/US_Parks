@@ -1,14 +1,21 @@
-# USParks
+# US Parks
 
 Welcome to your US Parks App!
 
-This gem allows you to access information about the different parks in each US State and territory. It also provides contact information for each park if you want to get their address and phone number.
+This gem allows you to access information about the different parks in each US State and territory. It provides information like the park's designation and a short description. There is also a url included for each park if you want to know more about your selected park.
 
 ## Installation
 
-$ gem install US_Parks
+This gem has not been published yet. Please clone this repo by typing this command in your terminal:
+
+$ git clone https://github.com/khris22/US_Parks.git
+
 
 ## Usage
+
+Go into this project's directory by typing:
+
+$ cd US_Parks
 
 Type the line below and follow the on screen prompts. 
 
@@ -30,4 +37,4 @@ The gem is available as open source under the terms of the [MIT License](https:/
 
 ## Code of Conduct
 
-Everyone interacting in the USParks project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/US_Parks/blob/master/CODE_OF_CONDUCT.md).
+Everyone interacting in the USParks project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[khris22]/US_Parks/blob/master/CODE_OF_CONDUCT.md).
