@@ -19,7 +19,7 @@ class USParks::CLI
         puts ""
         puts "                                  happy exploring!".upcase.colorize(:magenta)
         puts ""
-        sleep 2 #so the user can have a chance to read the directions first
+        sleep 2 
     end
 
     def list_state_names
