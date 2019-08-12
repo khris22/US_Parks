@@ -4,7 +4,7 @@ class USParks::State
 
     @@all = []
     
-    def initialize
+    def initialize(name)
         @name = name
         @url = url
         @parks = []
