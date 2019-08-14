@@ -44,10 +44,11 @@ class USParks::CLI
             elsif input.downcase == "back"
                 back_to_menu
             elsif index > 0 && index <= USParks::State.all.length
-                park = USParks::State.all[index - 1]
-                puts "                   ********" + "   You chose:  ".colorize(:light_blue) + "(#{index})_ _ _" + "#{park.name}".upcase.colorize(:cyan) + "   ********"
-                USParks::Scraper.scrape_state_park_list(index - 1)
-                USParks::State.all[index - 1].parks.each.with_index(1) do |park, index|
+                state = USParks::State.all[index - 1]
+                puts "                   ********" + "   You chose:  ".colorize(:light_blue) + "(#{index})_ _ _" + "#{state.name}".upcase.colorize(:cyan) + "   ********"
+                
+                USParks::Scraper.scrape_state_park_list(state)
+                state.parks.each.with_index(1) do |park, index|
                     puts ""
                     puts "            (#{index}) _ _ _ " + "#{park.name}".colorize(:yellow)
                     puts "                    #{park.designation}".colorize(:light_green)

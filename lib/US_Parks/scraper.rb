@@ -12,9 +12,9 @@ class USParks::Scraper
         end   
     end
 
-    def self.scrape_state_park_list(index)
-        state = USParks::State.all[index]
-        if state.parks.empty?
+    def self.scrape_state_park_list(state)
+        unless state.scraped
+            state.scraped = true
             doc = Nokogiri::HTML(open(state.url))
             array_park_list = doc.css(".col-md-9.col-sm-9.col-xs-12.table-cell.list_left")
             array_park_list.each do |park_attr|
@@ -24,7 +24,6 @@ class USParks::Scraper
                     park.description = park_attr.css("p").children.first.text.strip
                     designation = park_attr.css("h2").children.first
                     park.designation = designation.text if designation
-                state.parks << park
                 park.state = state 
             end
         end

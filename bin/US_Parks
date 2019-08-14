@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
 require "bundler/setup"
-require "US_Parks"
+require_relative "../lib/US_Parks"
 
 USParks::CLI.new.call
