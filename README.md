@@ -1,6 +1,7 @@
 # US Parks
 
 Demo: https://youtu.be/BNp54kpB3QU
+Blog Post: https://khris22.github.io/keep_exploring
 
 Welcome to your US Parks App!
 
